@@ -1,0 +1,114 @@
+{% block event %}
+    <div class="mmm  ppppp">
+         <!--Title-->
+         <div id="title-block" >
+            <h2>{{ actividad['title'] }}</h2>
+        </div>
+
+        <!--Event-->
+        <form 
+            class="mmm" 
+            action="/update_event.php" 
+            method="POST"
+            enctype="multipart/form-data"
+        >
+            <input value="{{ actividad['id']}}" name="id" type="hidden" />
+            <div class="flex-container mbb">
+                <label class="flex-25 bold mr">Título: </label>
+                
+                <input
+                    class="flex-75"
+                    type="text"
+                    name="title"
+                    value="{{ actividad['title'] }}"
+                />
+            </div>
+
+            <div class="flex-container mbb">
+                <label class="flex-25 bold mr">Email: </label>
+                
+                <input
+                    class="flex-75"
+                    type="text"
+                    value="{{ actividad['author'] }}"
+                    name="author"
+                    disabled
+                />
+            </div>
+            
+            <div class="flex-container mbb">
+                <label class="flex-25 bold mr">Descripción: </label>
+
+                <textarea
+                    class="flex-75"
+                    name="description"
+                >{{ actividad['description'] }}</textarea>
+            </div>
+            
+            <div class="flex-container mbb">
+                <label class="flex-25 bold mr">Fecha: </label>
+
+                <input 
+                    class="flex-75"
+                    type="date"
+                    name="date"
+                    value="{{ actividad['date'] }}"
+                />
+            </div>
+
+            <div class="flex-container mbb">
+                <label class="flex-25 bold mr">Precio: </label>
+
+                <input 
+                    class="flex-75"
+                    type="text"
+                    name="place"
+                    value="{{ actividad['price'] }}"
+                />
+            </div>
+
+            <div class="flex-container mbb">
+                <label class="flex-25 bold mr">Renovar foto: </label>
+
+                <input 
+                    class="flex-75"
+                    type="file"
+                    name="photo"
+                    accept=".jpg,.jpeg,.png"
+                />
+            </div>
+
+            
+            <div class="flex-container mbb">
+                <label class="flex-25 bold mr"> Añadir a galería: </label>
+
+                <div class="flex-75">
+                    <input 
+                        class="flex-75"
+                        type="file"
+                        name="new_gallery[]"
+                        accept=".jpg,.jpeg,.png"
+                        multiple
+                    />
+                </div>
+            </div>
+
+            <div class="flex-container mbb">
+                <label class="flex-25 bold mr"> Quitar de la galería: </label>
+
+                <select class="flex-75" name="delete_gallery[]" multiple>
+                    {% for image in gallery %}
+                        <option value="{{ attribute(image,0) }}">{{ attribute(image,0) }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+                
+            <div class="flex-end mrrr">
+                <input 
+                    type="submit"
+                    class="btn btn-success"
+                />
+            </div>
+        </form>
+    </div>
+{% endblock %}

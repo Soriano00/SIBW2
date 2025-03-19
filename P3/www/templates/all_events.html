@@ -1,0 +1,78 @@
+{% extends "./components/padre.html" %}
+
+    {% set body_class = 'container' %}
+
+    {% block title %}
+        Admin - Actividades
+    {% endblock %}
+
+
+
+    {% block styles %}
+        {{ parent() }}
+        <link rel="stylesheet" href="/styles/modal.css"/>
+        <link rel="stylesheet" href="/styles/new_event.css"/>
+        <link rel="stylesheet" href="/styles/admin.css"/>
+    {% endblock %}
+
+
+    {% block aside %}
+    
+        <form class="mttt form">
+            <div id="filter">
+                <i id="search-icon" class="fa fa-search" aria-hidden="true"></i>
+                <input 
+                    id="input_filter"
+                    placeholder="Filtre por texto" 
+                    type="text" 
+                />
+            </div>
+        </form>
+
+    {% endblock %}
+
+    {%  block contenido %}
+    <article class="actividad">
+    <div class="mmm">
+        <div class="text-center">
+            <h1>Panel de administración - Gestión de actividades</h1>
+            <hr class="hr-80" />
+        </div>
+        <div class="text-center">
+            <button id="addActividad">Añadir actividad</button>
+
+        </div>
+
+        <ul class="container ppp">
+            {% for actividad in actividades %}
+                <li class="admin-event shadow user mm">
+                    <p class="admin-event-title">
+                        
+                        <a href="actividad.php/?ev={{attribute (actividad, 0) }}">{{ attribute(actividad, 2) }}</a>
+                    </p>
+
+                    <div class="comment-admin prr"> 
+                        {% if user.role == "SUPER" %}
+                        <button 
+                            class="btn btn-rounded m p btn-outlined-danger"
+                            onclick="deleteEvent('{{ attribute(actividad, 0) }}')"
+                        >
+                            Borrar Actividad
+                        </button>
+                        
+                    {% endif %}
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+    </article>
+    {% endblock %}
+
+
+    {% block scripts %}
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+        <script type="module" src="/js/addActividad.js"></script>
+        <script type="text/javascript" src="../js/events.js"></script>
+        <script type="text/javascript" src="../js/filter-events.js"></script>
+    {% endblock %}

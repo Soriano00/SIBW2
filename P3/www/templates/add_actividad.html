@@ -1,0 +1,62 @@
+{% extends "./components/padre.html" %}
+
+{% set body_class = 'container' %}
+
+{% block title %}
+    Admin - Actividades
+{% endblock %}
+
+{% block styles %}
+{{parent()}}
+<link rel="stylesheet" href="../styles/new-event.css">
+{% endblock %}
+
+
+{% block contenido %}
+<article class="actividad">
+    <div class="mmm">
+        <div class="text-center">
+            <h1>Añadir nueva actividad</h1>
+            <hr class="hr-80" />
+        </div>
+
+        <form action="../php/add_event.php" enctype="multipart/form-data" method="POST" class="formulario-actividad">
+            <div class="flex-container mbb">
+                <label class="flex-25 bold mr">Título: </label>
+                <input class="flex-75 input-text" type="text" name="title" />
+            </div>
+
+            <div class="flex-container mbb">
+                <label class="flex-25 bold mr">Autor: </label>
+                <input class="flex-75 input-text" type="text" name="author" />
+            </div>
+
+            <div class="flex-container mbb">
+                <label class="flex-25 bold mr">Descripción: </label>
+                <textarea class="flex-75 input-textarea" name="description"></textarea>
+            </div>
+
+            <div class="flex-container mbb">
+                <label class="flex-25 bold mr">Fecha: </label>
+                <input class="flex-75 input-date" type="date" name="date" />
+            </div>
+
+            <div class="flex-container mbb">
+                <label class="flex-25 bold mr">Precio: </label>
+                <input class="flex-75 input-text" type="text" name="price" />
+            </div>
+
+            <div class="flex-container mbb">
+                <label class="flex-25 bold mr">Foto: </label>
+                <input class="flex-75 input-file" type="file" name="photo" accept=".jpg,.jpeg,.png" />
+            </div>
+
+            {% if user.role == "SUPER" %}
+            <div class="text-center">
+                <input type="submit" id="login-button" value="Añadir" class="btn btn-primary" />
+            </div>
+            {% endif %}
+        </form>
+    </div>
+</article>
+{% endblock %}

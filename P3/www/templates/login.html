@@ -1,0 +1,52 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/jpg" href="/images/logo.jpg" />
+    
+    <link rel="stylesheet" href="/styles/login-register.css" />
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css">
+       
+    <title>Calendario de senderismo</title>
+</head>
+<body>
+        <div class="wrapper">
+            <h1>Introduce tus credenciales para entrar.</h1>
+            
+            <div class="register-link">
+                <p>¿No está registrado? <a href="../register.php">Regístrese aquí</a></p>
+            </div>
+
+            <form action="../php/login_user.php" method="POST">
+                <div class="input-box">
+                    <input 
+                    placeholder="Email"
+                    type="email"
+                    name="email"
+                    />
+                    <i class='bx bxs-user'></i>
+                </div>
+                <div class="input-box">
+                    <input 
+                    placeholder="Contraseña"
+                    type="password"
+                    name="password"
+                    />
+                    <i class='bx bxs-lock-alt' ></i>
+                </div>
+                <div class="remember-forgot">
+                    <label><input type = "checkbox"> Recuerdame</label>
+                    <a href="#"> Recordar contraseña</a>
+                </div>
+                <input  
+                    type="submit"
+                    id="login-button"
+                    value="Entrar"
+                />
+            </form>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../styles/comentarios.css">
+    <link rel="icon" type="image/x-icon" href="../images/logo.jpg">
+    <title>Senderismo ASM</title>
+</head>
+<body>
+    <div class="container">
+        <div class="botones">
+            <a href="../actividad.php?ev={{ actividad.Id_Actividad }}" class="button">
+                <button>Volver</button>
+            </a>
+        </div>
+
+        <div class="comentarios">
+            {% for comentario in comentarios %}
+            <div class="comentario">
+                <h4>Usuario: {{ attribute(comentario, 0) }}</h4>
+                <p>Fecha: {{ attribute(comentario, 1) }}</p>
+                <p>Comentario: {{ attribute(comentario, 2) }}</p>
+                <div class="comment-admin prr">
+                    {% if user.role == "SUPER" %}
+                    <button 
+                        class="btn btn-rounded m p display-none btn-outlined-success save-button"
+                        onclick="updateComment('{{ attribute(comentario, 3) }}')"
+                        class="rol-button"
+                    >
+                        Editar comentario
+                    </button>
+                    {% endif %}
+                    {% if user.role == "SUPER" %}
+                    <button 
+                        class="btn btn-rounded m p btn-outlined-danger"
+                        onclick="deleteComment('{{ attribute(comentario, 3) }}')"
+                    >
+                        Borrar comentario
+                    </button>
+                    {% endif %}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        
+        <div class="head"><h1>Deja tu comentario</h1></div>
+        <div class="text"><p>Comparte tu experiencia</p></div>
+        <div class="comments"></div>
+        <form 
+            class="modal-body" 
+            id="add-comment-form"
+            action="../php/add_comment.php"
+            method="post"
+        >
+            <input type="hidden" name="idActividad" value="{{ actividad.Id_Actividad }}"> <!-- Campo oculto para idActividad -->
+            <div class="commentbox">
+                <img src="../images/perfil.png" alt="">
+                <div class="content">
+                    <h2>Comment as:</h2>
+                    <input type="text" value="Anonymous" class="user" name="name">
+                    <input type="text" value="Email Address" class="email" name="email">
+                    <div class="commentinput">
+                        <input type="text" placeholder="Enter comment" class="usercomment" name="comment">
+                        <div class="buttons">
+                            <button type="submit" disabled id="publish">Publish</button>
+                            <div class="notify">
+                                <input type="checkbox" class="notifyinput"> <span>Notify me</span>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="policy">This site is protected by reCAPTCHA and the Google <a href="">privacy policy</a> and <a href="">Terms of Service</a> apply.</p>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <script src="../js/comments.js"></script>
+    <script src="../js/mod_comments.js"></script>
+</body>
+</html>

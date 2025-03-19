@@ -1,0 +1,26 @@
+{% block event_info %}
+    <div class="mtt ppp">
+    
+        {% if role is same as "SUPER" or role is same as "MODERADOR" %}
+        <div class="mbbbb mttt">
+
+            <button
+                class="btn shadow m p btn-outlined-warning edit-button"
+                onclick="editEvent(`{{ actividad['id'] }}`)"
+            >
+                Editar actividad<i class="fas fa-edit"></i>
+            </button>
+        
+            <button
+                class="btn shadow m p btn-outlined-danger delete-button mbbbb"
+                onclick="deleteEvent( `{{ actividad['id'] }}` )"
+            >
+                Eliminar actividad<i class="fa fa-trash"></i>
+            </button>
+        </div>
+        {% endif %}
+
+
+    
+    </div>
+{% endblock %}

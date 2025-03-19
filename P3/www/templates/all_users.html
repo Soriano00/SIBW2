@@ -1,0 +1,88 @@
+{% extends "./components/padre.html" %}
+
+{% set body_class = 'container' %}
+
+{% block title %}
+    Admin - Usuarios
+{% endblock %}
+
+{% block styles %}
+    {{ parent() }}
+    <link rel="stylesheet" href="/styles/admin.css"/>
+{% endblock %}
+
+{% block aside %}
+    
+<form class="mttt form">
+    <div id="filter">
+        <i id="search-icon" class="fa fa-search" aria-hidden="true"></i>
+        <input 
+            id="input_filter"
+            placeholder="Filtre por texto" 
+            type="text" 
+        />
+    </div>
+</form>
+
+{% endblock %}
+
+{% block contenido %}
+<article class="actividad">    
+    <div class="mmm">
+        <div class="text-center">
+            <h1>Panel de administración - Gestión de usuarios</h1>
+            <hr class="hr-80" />
+        </div>
+        <ul class="container ppp">
+            {% for usuario in usuarios %}
+                <li class="shadow user mm">
+                    <p>
+                        <span class="bold">
+                            Correo: <strong>{{ attribute(usuario, 1) }}</strong>
+                        </span>
+                        <span class="bold">
+                            Rol: <strong>{{ attribute(usuario, 2) }}</strong>
+                        </span>
+                        - <br>  
+                        <select name="rol" class="rol-select">
+                            {% for rol in roles %}
+                            <option value="{{ rol }}" {% if rol == "{{ attribute(usuario, 2) }}" %}selected{% endif %}>
+                                {{ rol }}
+                            </option>
+                            {% endfor %}
+                        
+                        </select>
+                    </p>
+                    {% if user['Id_Usuario'] != attribute(usuario, 0) %}
+
+                        <div class="comment-admin prr">
+                            {% if user.role == "SUPER" %}
+                            <button 
+                                class="btn btn-rounded m p display-none btn-outlined-success save-button"
+                                onclick="updateUser('{{ attribute(usuario, 0) }}', '{{ loop.index }}')"
+                                class="rol-button"
+                            >
+                                Cambiar rol
+                            </button>
+                            {% endif %}
+                            {% if user.role == "SUPER" %}
+                            <button 
+                                class="btn btn-rounded m p btn-outlined-danger"
+                                onclick="deleteUser('{{ attribute(usuario, 0) }}')"
+                            >
+                                Borrar user
+                            </button>
+                            {% endif %}
+                        </div>
+                    {% endif %}
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+</article>
+{% endblock %}
+
+{% block scripts %}
+    <script type="text/javascript" src="/js/edit-users.js"></script>
+    <script type="text/javascript" src="../js/filter-users.js"></script>
+{% endblock %}

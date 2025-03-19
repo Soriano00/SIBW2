@@ -1,0 +1,48 @@
+{% extends "./components/padre.html" %}
+
+{% set body_class = 'container' %}
+
+{% block title %}
+    Admin - Usuario
+{% endblock %}
+
+{% block styles %}
+{{parent()}}
+<link rel="stylesheet" href="../styles/new-event.css">
+{% endblock %}
+
+
+{% block contenido %}
+<article class="actividad">
+    <div class="mmm">
+        <div class="text-center">
+            <h1>Modificar info {{user ['nombre']}}</h1>
+            <hr class="hr-80" />
+        </div>
+
+        <form action="../php/change_user_info.php" method="POST"class="formulario-actividad">
+            <div class="flex-container mbb">
+                <label class="flex-25 bold mr">Nombre: </label>
+                <input class="flex-75 input-text"  type="text" name="name" />
+            </div>
+
+            <div class="flex-container mbb">
+                <label class="flex-25 bold mr">Contraseña: </label>
+                <input class="flex-75 input-text" type="password" name="password" />
+            </div>
+            <div class="flex-container mbb">
+                <label class="flex-25 bold mr">Repita Contraseña: </label>
+                <input class="flex-75 input-text" type="password" name="password" />
+            </div>
+
+            {% if user.role == "SUPER"  %}
+            <div class="text-center">
+                <input type="submit" id="login-button" value="Añadir" class="btn btn-primary" />
+            </div>
+            {% endif %}
+        </form>
+    </div>
+</article>
+{% endblock %}
+
+

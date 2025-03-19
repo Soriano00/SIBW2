@@ -1,0 +1,38 @@
+{% use "components/event/base_event.html" %}
+
+
+{% block event %}
+<div class="mmm  ppppp">
+    {% block event_title %}
+        <div id="title-block" class="flex-container">
+            <div class="flex-25 mr-60">
+                {{ parent() }}
+            </div>
+        </div>
+            
+    {% endblock %}
+
+    {% block action %}
+        <a
+            href="/evento/imprimir/{{ actividad['id'] }}"
+            id="print"
+        >
+            <i class="fa fa-print" aria-hidden="true"></i>
+            Imprimir
+        </a>
+
+        <a
+        href="/evento/comentarios/{{ actividad['id'] }}"
+        id="print"
+    >
+        <i class="fa fa-print" aria-hidden="true"></i>
+        Seccion Comentarios
+    </a>
+    {% endblock %}
+
+    {% block event_content %}
+        {{ parent() }}
+    {% endblock %}
+
+</div>
+{% endblock %}

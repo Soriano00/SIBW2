@@ -1,0 +1,79 @@
+{% extends "components/padre.html" %}
+
+    {% block title %}
+        Mi Perfil
+    {% endblock %}
+
+    {% block styles %}
+        {{ parent() }}
+    {% endblock %}
+
+
+    {% block contenido %}
+    <article class="actividad">
+        <div class="mmm text-center">
+            <h1>Mi perfil</h1>
+            <hr class="hr-80" />
+            
+            <div class="personal-info ppp text-left ml-10">
+                <p><span class="bold">Nombre: </span> {{ user['nombre'] }} </p>
+                <p><span class="bold">Email: </span> {{ user['email'] }} </p>
+                <p class="mbbbb">
+                    <span class="bold">Rol: </span> 
+                    {{ user['role'] }} 
+                </p>
+
+                <button 
+                    class="btn btn-outlined-warning"
+                    id="change-info"
+                >Cambiar información personal</button>
+            </div>
+        </div>
+
+        <div class="popup">
+            <div class="close-btn">&times;</div>
+            <div class="form">
+                <h2>Cambiar datos personales</h2>
+                <form action="../php/change_user_info.php" method="POST">
+                    <div class="form-element">
+                        <label for="nombre">Nombre</label>
+                        <input 
+                        placeholder="Nombre"
+                        type="name"
+                        name="name"
+                        />
+                    </div>
+                    <div class="form-element">
+                        <label for="nombre">Contraseña</label>
+                        <input 
+                        placeholder="password"
+                        type="password"
+                        name="password"
+                        />
+                    </div>
+
+                    <div class="form-element">
+                        <label for="nombre">Repita Contraseña</label>
+                        <input 
+                        placeholder="password"
+                        type="password"
+                        name="password"
+                        />
+                    </div>
+
+                    <div class="form-element">
+                        <button id="edit-button">Editar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </article>
+    {% endblock %}
+
+
+
+    {% block scripts %}
+        <script type = "module" src="../js/infoUser.js"></script>
+        <script type = "module" src="../js/editInfoUser.js"></script>
+    {% endblock %}

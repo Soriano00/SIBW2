@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">    
+    <head>    
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" type="image/x-icon" href="../images/logo.jpg"> 
+        
+        {% block title %}
+            <title> Senderismo ASM</title>
+        {% endblock %}
+        {% block styles %}
+            <link rel="stylesheet" href="../styles/styles.css">
+        {% endblock %}
+        
+    </head>
+    <body id="contenedor">
+            <!--Barra de navegacion-->
+
+            <nav>
+                {% block nav %}
+
+                <input type="checkbox" id="toggle">
+                <div class="logo">
+                    Senderismo ASM
+                    <img src="../images/logo.jpg" alt="Logo" width="100px" height="100px"/>
+                </div>
+                <ul class="list">
+        
+                    <li><a href="/">Inicio</a></li>
+                    {% if user['role'] is same as 'SUPER' or user['role'] is same as 'REGISTRADO' %}
+                        <li>
+                            <a 
+                                href="profile.php"
+                            ><i class="fas fa-user"></i>Mi Perfil</a>
+                        </li>
+                    {% endif %}
+                    {% if not (user['role'] is same as 'SUPER' or user['role'] is same as 'REGISTRADO') %}
+                        <li>
+                            <a 
+                                href="login.php">Iniciar Sesion</a>
+                        </li>
+                    {% endif %}
+                    {% if user['role'] is same as 'SUPER' %}
+                        <li>
+                            <a 
+                                href="all_users.php"
+                            ><i class="fas fa-users"></i> Admin- usuarios</a>
+                        </li>
+                    {% endif %}
+                    {% if user['role'] is same as 'SUPER' %}
+                        <li>
+                            <a 
+                                href="all_events.php"
+                            ><i class="fa fa-plus" aria-hidden="true"></i> Admin- eventos</a>
+                        </li>
+                    {% endif %}
+                    {% if user['role'] is same as 'SUPER' or user['role'] is same as 'REGISTRADO' %}
+                    <li>
+                        <a 
+                            href="../php/logout.php"
+                        ><i class="fa fa-plus" aria-hidden="true"></i> Salir</a>
+                    </li>
+                {% endif %}
+                </ul>
+                <label for="toggle" class="icon-bars">
+                    <div class="line"></div>
+                    <div class="line"></div>
+                    <div class="line"></div>
+                </label>
+        
+                {% endblock %}
+            </nav>
+            
+
+            <aside>
+                {% block aside %}
+                    <img src="../images/FotoAside.jpeg" alt="Aside" width="100%"/>
+                    <h3 class="center">Enlaces de interés</h2>
+                    <p>Aqui tienes vídeos de interés</p>
+        
+                    <a href="#" class="video-link">
+                        <h4>Mejores lugares </h4>
+                        <img src="../images/video1.jpeg" alt="Video1" class="video-image"/>
+                    </a>
+        
+                    <a href="#" class="video-link">
+                        <h4>Mejores zapatillas</h4>
+                        <img src="../images/video2.jpeg" alt="Video2" class="video-image"/>
+                    </a>
+        
+                    <a href="#" class="video-link">
+                        <h4>Mejores mochilas</h4>
+                        <img src="../images/video3.jpeg" alt="Video3" class="video-image"/>
+                    </a>
+    
+                {% endblock %}
+            </aside>
+
+            <article id="contenido">
+
+                {% block contenido %}
+
+                <p>contenido</p>
+            
+                {% endblock %}
+            </article>
+
+            {% block pie %}
+            <footer class="pie-pagina">
+                <div class="grupo1">
+                    <div class="box">
+                        <figure>
+                            <a href="#">
+                                <img src="../images/logo.jpg" alt="Logo" width="100px" height="100px"/>
+                            </a>
+                        </figure>
+                    </div>
+                    <div class="box">
+                        <h2>Sobre Nosotros</h2>
+                        <p>
+                            Somos una empresa de senderismo....
+                        </p>
+                    </div>
+                    <div class="box">
+                        <h2>Siguenos</h2>
+                        <div class="red-social">
+                            <a href="#">
+                                <img src="../images/logoInsta.jpeg" alt="Logo Instagram" width="30px" height="30px"/>
+                            </a>
+                            <a href="#">
+                                <img src="../images/logoWhat.jpeg" alt="Logo Whatsapp" width="30px" height="30px"/>
+                            </a>
+                            <a href="#">
+                                <img src="..images/logoX.png" alt="Logo X" width="30px" height="30px"/>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="grupo2">
+                    <small>&copy; 2024 <b>Alejandro Soriano Morante</b> Todos los derechos reservados</small>
+                </div>
+            </footer>
+            {% endblock %}
+
+            {% block scripts %}
+
+            {% endblock %}
+    </body>
+</html>

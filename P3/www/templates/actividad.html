@@ -1,0 +1,62 @@
+{% extends "./components/padre.html" %}
+
+{% block title %}
+    {{ actividad['title'] }}
+{% endblock %}
+
+{% block contenido %}
+<!-- Event -->
+<article class="actividad">
+    <div>
+        <p>
+            <b>Organizador:</b> {{ actividad['autor'] }}
+        </p>
+        <p>
+            <b>Fecha:</b> {{ actividad['date'] }}
+        </p>
+        <p>
+            <b>Precio:</b> {{ actividad['price'] }}
+        </p>
+        <p>
+            {{ actividad['descr'] }}
+        </p>
+
+        {% if actividad['photo'] %}
+            <img
+                class="shadow"
+                loading="lazy"
+                src="{{ actividad['photo'] }}"
+                alt="{{ actividad['title'] }}"
+                class="foto-actividad"
+            />
+        {% endif %}
+
+        {% for image in galeria %}
+            <img
+                class="shadow"
+                loading="lazy"
+                src="{{ image }}"
+                alt="{{ actividad['title'] }}"
+                class="foto-actividad"
+            />
+        {% endfor %}
+
+        <section class="botones">
+            <button id="imprimirActividad">Imprimir actividad</button>
+            {% if user.role == "SUPER" or user.role == "REGISTRADO" %}
+            <button id="Comentarios">Mostrar comentarios</button>
+            {% endif %}
+            {% if user.role == "SUPER" %}
+                <button id="edit">Editar actividad</button>
+            {% endif %}
+ 
+        </section>
+    </div>
+</article>
+{% endblock %}
+
+{% block scripts %}
+    <script src="../js/actividad_imprimir.js"></script>
+    <script src="../js/comentarios.js"></script>
+    <script src="../js/editar.js"></script>
+{% endblock %}

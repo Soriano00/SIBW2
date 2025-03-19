@@ -1,0 +1,59 @@
+{% extends "./components/padre.html" %}
+
+{% block title %}
+    {{ actividad['title'] }}
+{% endblock %}
+
+{% block styles %}
+    <link rel="stylesheet" href="../styles/styles2.css">
+{% endblock %}
+
+{% block contenido %}
+<!-- Event -->
+<article class="actividad">
+    <div>
+        <p>
+            <b>Organizador:</b> {{ actividad['autor'] }}
+        </p>
+        <p>
+            <b>Fecha:</b> {{ actividad['date'] }}
+        </p>
+        <p>
+            <b>Precio:</b> {{ actividad['price'] }}
+        </p>
+        <p>
+            {{ actividad['descr'] }}
+        </p>
+
+        {% if actividad['photo'] %}
+            <img
+                class="shadow"
+                loading="lazy"
+                src="{{ actividad['photo'] }}"
+                alt="{{ actividad['title'] }}"
+                class="foto-actividad"
+            />
+        {% endif %}
+
+        {% for image in galeria %}
+            <img
+                class="shadow"
+                loading="lazy"
+                src="{{ image }}"
+                alt="{{ actividad['title'] }}"
+                class="foto-actividad"
+            />
+        {% endfor %}
+
+        <section class="botones">
+            <a href="actividad_imprimir.php?ev={{ actividad['Id_Actividad'] }}" class="btn-link">
+                Imprimir actividad
+            </a>
+
+            <a href="comentarios.html" class="btn-link">
+                Mostrar comentarios
+            </a>    
+        </section>
+    </div>
+</article>
+{% endblock %}

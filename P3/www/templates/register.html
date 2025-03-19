@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styles.css">
+    <link rel="icon" type="image/x-icon" href="./images/logo.jpg"> 
+    <link rel="stylesheet" href="./styles/login-register.css" />
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css">
+    
+    <title> Senderimo ASM</title>
+</head>
+<body>
+    <div class="wrapper">
+        <h1>¡Bienvenido!</h1>
+        <h1>Introduzca sus datos personales.</h1>
+        
+        <div class="register-link">
+            <p>¿Ya está registrado? <a href="../login.php">Entre aquí</a></p>
+        </div>
+        
+        <form action="../php/add_user.php" method="POST">
+            <div class="input-box">
+                <input 
+                placeholder="Email"
+                name="email"
+                type="email"
+            />
+            <i class='bx bxs-user'></i>
+            </div>
+            <div class="input-box">
+                <input 
+                placeholder="Nombre"
+                name="name"
+                type="text"
+                />
+            <i class='bx bxs-user'></i>
+            </div>
+            <div class="input-box">
+                <input 
+                placeholder="Contraseña"
+                name="password"
+                type="password"
+                />
+                <i class='bx bxs-lock-alt' ></i>
+            </div>
+            <div class="input-box">
+                <input 
+                placeholder="Repita su contraseña"
+                name="password"
+                type="password"
+                />
+                <i class='bx bxs-lock-alt' ></i>
+            </div>
+            <input  
+                type="submit"
+                id="register-button"
+                value="Registrarme"
+            />
+
+        </form>
+
+    </div>
+
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script type="module" src="/js/components/register.js"></script>
+</body>
+</html>

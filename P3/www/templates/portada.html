@@ -1,0 +1,16 @@
+{% extends "./components/padre.html" %}
+
+
+        {% block contenido %}
+
+        {% for actividad in actividades %}
+            <div>
+                <a href="actividad.php/?ev={{attribute (actividad, 0) }}" class="news">
+                    <h4>{{attribute (actividad, 2) }}</h4>
+                    <img src ="{{ attribute (actividad, 1) }}" alt = "{{attribute (actividad, 2) }}" class="image-new">
+                </a>
+            </div>
+                    
+        {% endfor %}
+
+        {% endblock %}

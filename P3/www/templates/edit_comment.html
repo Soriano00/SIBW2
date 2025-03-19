@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible"="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../styles/comentarios.css">
+    <link rel="icon" type="image/x-icon" href="../images/logo.jpg">
+    <title>Senderismo ASM</title>
+</head>
+<body>
+    <div class="container">
+        <div class="botones">
+            <a href="../comentarios.php?ev={{ comm.Id_Actividad }}" class="button">
+                <button>Volver</button>
+            </a>
+        </div>
+        <div class="text"><p>Modifica el comentario {{ comm.Id_Actividad }}</p></div>
+        <div class="comments"></div>
+        <form 
+            class="modal-body" 
+            id="add-comment-form"
+            action="../php/update_comment.php"
+            method="post"
+        >
+            <input type="hidden" name="idActividad" value="{{ comm.Id_Actividad }}"> <!-- Campo oculto para idActividad -->
+            <input type="hidden" name="idComentario" value="{{ comm.Id_Comentario }}"> <!-- Campo oculto para idComentario -->
+            <div class="commentbox">
+                <img src="../images/perfil.png" alt="">
+                <div class="content">
+                    <h2>Comment as:</h2>
+                    <input type="text" value="{{ comm.author }}" class="user" name="name">
+                    <input type="text" value="{{ comm.author }}" class="email" name="email">
+                    <div class="commentinput">
+                        <input type="text" value="{{ comm.comment }}" class="usercomment" name="comment">
+                        <div class="buttons">
+                            <button type="submit" id="publish">Publish</button>
+                        </div>
+                    </div>
+                    <p class="policy">This site is protected by reCAPTCHA and the Google <a href="">privacy policy</a> and <a href="">Terms of Service</a> apply.</p>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <script src="../js/comments.js"></script>
+</body>
+</html>
